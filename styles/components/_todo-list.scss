@@ -1,0 +1,21 @@
+ul{
+    padding: 0;
+    background: rgba(217, 217, 217, 0.3);
+}
+li{
+    height: 50px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #ffffff;
+    display: flex;
+}
+li p, li del{
+    margin: auto;
+}
+li label{
+    margin: 12px 10px !important;
+    padding: 0 !important;
+}
+li small{
+    align-self: flex-end;
+    margin: 0 3px 3px 0;
+}

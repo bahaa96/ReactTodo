@@ -5,7 +5,25 @@
 
 
 // Components
+@import "components/todo-list";
 
+button{
+    margin: 10px 0;
+    border-radius: 0 !important;
+    cursor: pointer;
 
+}
 
+input[type='text'], input[type='search']{
+    border-width: 2px;
+    border-radius: 0;
+}
 
+.heading {
+    margin: 30px 0;
+}
+
+label{
+    cursor: pointer;
+    margin: 10px 0;
+}
