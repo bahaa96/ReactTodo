@@ -3,19 +3,29 @@ ul{
     background: rgba(217, 217, 217, 0.3);
 }
 li{
-    height: 50px;
+    height: 75px;
     box-sizing: border-box;
     border-bottom: 2px solid #ffffff;
     display: flex;
+
 }
-li p, li del{
-    margin: auto;
+li:hover{
+    background: rgba(195, 195, 195, 0.3);
 }
+
 li label{
     margin: 12px 10px !important;
     padding: 0 !important;
+    align-self: center;
 }
-li small{
-    align-self: flex-end;
-    margin: 0 3px 3px 0;
+li p{
+    margin: auto;
+    color: #00bcd4;
+}
+li div {
+    margin:auto;
+}
+
+h3{
+    margin: auto;
 }

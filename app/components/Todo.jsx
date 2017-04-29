@@ -4,11 +4,11 @@ let moment = require("moment")
 let Todo= React.createClass({
     render(){
         let {text, completed, id, createdAt, completedAt} = this.props
-        let renderdelorp = ()=>{
+        let renderCompletedOrNot = ()=>{
             if (completed){
-                return <del>{text}</del>
+                return <del><h4>{text}</h4></del>
             }else {
-                return <p>{text}</p>
+                return <h4>{text}</h4>
             }
         }
         let renderDate = ()=>{
@@ -30,8 +30,11 @@ let Todo= React.createClass({
                     <span className="custom-control-indicator"/>
 
                 </label>
-                {renderdelorp()}
-                <small>{renderDate()}</small>
+                <div className="flex-column">
+                    {renderCompletedOrNot()}
+                    <p>{renderDate()}</p>
+                </div>
+
             </li>
         )
     }

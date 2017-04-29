@@ -1,5 +1,6 @@
 let React = require("react")
 let expect = require("expect")
+let ReactDOM = require("react-dom")
 let TestUtils = require("react-addons-test-utils")
 
 let TodoList = require("TodoList")
@@ -23,5 +24,11 @@ describe("TodoList", ()=>{
         let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>)
         let todoComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo)
         expect(todoComponents.length).toBe(todos.length)
+    })
+    it("Should return empty message while there're no todos", ()=>{
+        let todos = []
+        let todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>)
+        let $el = $(ReactDOM.findDOMNode(todoList))
+        expect($el.find("h3").length).toBe(1)
     })
 })

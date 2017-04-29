@@ -58,7 +58,7 @@ let Main = React.createClass({
         return (
             <div className="container text-center">
                 <div className="row justify-content-center">
-                    <div className="col-6">
+                    <div className="col-10 col-sm-8 col-md-6">
                         <h2 className="heading">Todo App</h2>
                         <SearchForm onSearch={this.handleSearch}/>
                             <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
