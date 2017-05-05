@@ -2,24 +2,28 @@ let React = require("react")
 let expect = require("expect")
 let TestUtils = require("react-addons-test-utils")
 
-let SearchForm = require("SearchForm")
+import {SearchForm} from "SearchForm"
 
 describe("SearchForm", ()=>{
     it("Should exists", ()=>{
         expect(SearchForm).toExist()
     })
-    it("Should call on onSearch when passing a valid input", ()=>{
+    it("Should dispatch SET_SEARCH_TEXT when text changes", ()=>{
         let spy = expect.createSpy()
-        let searchForm = TestUtils.renderIntoDocument(<SearchForm onSearch={spy}/>)
+        let searchForm = TestUtils.renderIntoDocument(<SearchForm dispatch={spy}/>)
         searchForm.refs.searchText.value = "Hello"
         TestUtils.Simulate.change(searchForm.refs.searchText)
-        expect(spy).toHaveBeenCalledWith("Hello", false)
+        expect(spy).toHaveBeenCalledWith({
+            type: "SET_SEARCH_TEXT",
+            searchText: "Hello"
+        })
     })
-    // it("Should not call on onSearch when passing a invalid input", ()=>{
-    //     let spy = expect.createSpy()
-    //     let searchForm = TestUtils.renderIntoDocument(<SearchForm onSearch={spy}/>)
-    //     searchForm.refs.searchText.value = ""
-    //     TestUtils.Simulate.change(searchForm.refs.searchText)
-    //     expect(spy).toNotHaveBeenCalled()
-    // })
+    it("Should dispatch TOGGLE_SHOW_COMPLETED when checkbox checked", ()=>{
+        let spy = expect.createSpy()
+        let searchForm = TestUtils.renderIntoDocument(<SearchForm dispatch={spy}/>)
+        TestUtils.Simulate.click(searchForm.refs.showCompleted)
+        expect(spy).toHaveBeenCalledWith({
+            type: "TOGGLE_SHOW_COMPLETED"
+        })
+    })
 })

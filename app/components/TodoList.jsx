@@ -1,15 +1,18 @@
 let React = require("react")
-let Todo = require("Todo")
+let {connect} = require("react-redux")
 
-let TodoList= React.createClass({
+let todoApi = require("todoApi")
+import Todo from "Todo"
+
+export let TodoList = React.createClass({
     render(){
-        let {todos, onToggle} = this.props
+        let {todos, showCompleted, searchText} = this.props
         let renderTodos = ()=>{
             if (todos.length === 0){
                 return <li className="flex-row"><h3> No Todos yet to show </h3></li>
             }
-            return todos.map((todo)=>{
-                return <Todo key={todo.id} {...todo} onToggle={onToggle}/>
+            return todoApi.filterTodos(todos, showCompleted, searchText).map((todo)=>{
+                return <Todo key={todo.id} {...todo}/>
             })
         }
         return (
@@ -20,4 +23,6 @@ let TodoList= React.createClass({
     }
 })
 
-module.exports = TodoList
+export default connect(
+    state => state
+)(TodoList)

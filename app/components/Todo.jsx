@@ -1,7 +1,10 @@
 let React = require("react")
 let moment = require("moment")
+let {connect} = require("react-redux")
 
-let Todo= React.createClass({
+let actions = require("actions")
+
+export let Todo = React.createClass({
     render(){
         let {text, completed, id, createdAt, completedAt} = this.props
         let renderCompletedOrNot = ()=>{
@@ -23,7 +26,7 @@ let Todo= React.createClass({
         return (
             <li onClick={(e)=>{
                 e.preventDefault()
-                this.props.onToggle(id)
+                this.props.dispatch(actions.toggleTodo(id))
             }}>
                 <label className="custom-control custom-checkbox">
                     <input type="checkbox" ref={"check"} className="custom-control-input" checked={completed}/>
@@ -40,4 +43,4 @@ let Todo= React.createClass({
     }
 })
 
-module.exports = Todo
+export default  connect()(Todo)

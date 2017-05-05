@@ -1,19 +1,21 @@
 let React = require("react")
-
-let SearchForm = React.createClass({
-    onSearch(){
-        let searchText = this.refs.searchText.value
-        let showCompleted = this.refs.showCompleted.checked
-        this.props.onSearch(searchText, showCompleted)
+let {connect} = require("react-redux")
+let actions = require("actions")
 
 
-    },
+export let SearchForm = React.createClass({
     render(){
+        let {searchText, showCompleted, dispatch} = this.props
         return (
             <div>
-                <input type="search" className="form-control" ref={"searchText"} placeholder="Search todos" onChange={this.onSearch}/>
-                <label className="custom-control custom-checkbox" onClick={this.onSearch}>
-                    <input type="checkbox" ref={"showCompleted"} className="custom-control-input"/>
+                <input type="search" className="form-control" ref={"searchText"} value={searchText} placeholder="Search todos" onChange={()=>{
+                    dispatch(actions.setSearchText(this.refs.searchText.value))
+                }}/>
+                <label className="custom-control custom-checkbox" onClick={(e)=>{
+                    e.preventDefault()
+                    dispatch(actions.toggleShowCompleted())
+                }}>
+                    <input type="checkbox" checked={showCompleted} ref={"showCompleted"} className="custom-control-input"/>
                     <span className="custom-control-indicator"/>
                     <span className="custom-control-description">&nbsp; Show Completed Todos</span>
                 </label>
@@ -22,4 +24,11 @@ let SearchForm = React.createClass({
     }
 })
 
-module.exports = SearchForm
+export default connect(
+    (state)=>{
+    return {
+        showCompleted: state.showCompleted,
+        searchText: state.searchText
+    }
+}
+)(SearchForm)
