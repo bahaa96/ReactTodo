@@ -8,18 +8,4 @@ describe("Todo", ()=>{
     it("Should exists", ()=>{
         expect(Todo).toExist()
     })
-    it("Should call onToggle when click the checkbox", ()=>{
-        let todo ={
-            id: 2,
-            text: "Walk dog",
-            completed: false
-        }
-        let spy = expect.createSpy()
-        let todoComponent = TestUtils.renderIntoDocument(<Todo {...todo} dispatch={spy}/>)
-        TestUtils.Simulate.click(todoComponent.refs.check)
-        expect(spy).toHaveBeenCalledWith({
-            type: "TOGGLE_TODO",
-            id: todo.id
-        })
-    })
 })

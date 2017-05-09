@@ -26,7 +26,7 @@ export let Todo = React.createClass({
         return (
             <li onClick={(e)=>{
                 e.preventDefault()
-                this.props.dispatch(actions.toggleTodo(id))
+                this.props.dispatch(actions.startToggleTodo(id, !completed))
             }}>
                 <label className="custom-control custom-checkbox">
                     <input type="checkbox" ref={"check"} className="custom-control-input" checked={completed}/>

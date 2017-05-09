@@ -7,12 +7,10 @@ let {Provider} = require("react-redux")
 let Main = require("Main")
 
 let actions = require("actions")
-let todoApi = require("todoApi") 
+let todoApi = require("todoApi")
 let store = require("configureStore").configure()
 
-let todos = todoApi.getTodos()
-store.dispatch(actions.addTodos(todos))
-
+store.dispatch(actions.startAddTodos())
 
 require("style-loader!css-loader!sass-loader!../styles/app.scss")
 

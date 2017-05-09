@@ -2,7 +2,7 @@ let React = require("react")
 let TestUtils = require("react-addons-test-utils")
 let expect = require("expect")
 let ReactDOM = require("react-dom")
-
+import * as actions from "actions"
 let {AddTodo} = require("AddTodo")
 
 describe("AddTodo", ()=>{
@@ -15,10 +15,7 @@ describe("AddTodo", ()=>{
         let $el = $(ReactDOM.findDOMNode(addTodo))
         addTodo.refs.text.value = "Hello"
         $el.find("button")[0].click()
-        expect(spy).toHaveBeenCalledWith({
-            type: "ADD_TODO",
-            text: "Hello"
-        })
+        expect(spy).toHaveBeenCalledWith(actions.startAddTodo("Hello"))
     })
     it("Should not dispatch ADD_TODO when invalid todo data ", ()=>{
         let spy = expect.createSpy()

@@ -1,5 +1,10 @@
+import configureMockStore from "redux-mock-store"
+import thunk from "redux-thunk"
 let expect = require("expect")
+
 let actions = require("actions")
+
+let createMockStore = configureMockStore([thunk])
 
 describe("Actions", ()=>{
     it("Should set search text", ()=>{
@@ -11,26 +16,23 @@ describe("Actions", ()=>{
         expect(actions.setSearchText(text)).toEqual(expected)
     })
     it("Should add todo ", ()=>{
-        let text = "Walk tha dog"
+        let todo = {
+            id: "abc123",
+            text: "Walk th dog",
+            createdAt: 6500,
+            completed: false
+        }
         let expected = {
             type: "ADD_TODO",
-            text
+            todo
         }
-        expect(actions.addTodo(text)).toEqual(expected)
+        expect(actions.addTodo(todo)).toEqual(expected)
     })
     it("Should toggle showCompleted", ()=>{
         let expected = {
             type: "TOGGLE_SHOW_COMPLETED"
         }
         expect(actions.toggleShowCompleted()).toEqual(expected)
-    })
-    it("Should toggle todo ", ()=>{
-        let id = 5
-        let expected = {
-            type: "TOGGLE_TODO",
-            id
-        }
-        expect(actions.toggleTodo(id)).toEqual(expected)
     })
     it("Should add todos ", ()=>{
         let todos = [
@@ -43,5 +45,29 @@ describe("Actions", ()=>{
             type: "ADD_TODOS",
             todos
         })
+    })
+    it(" Should create todo and dispatch ADD_TODO", (done)=>{
+        let store = createMockStore({})
+        let todoText = "Clean your room"
+        store.dispatch(actions.startAddTodo(todoText)).then(()=>{
+            let actions = store.getActions()
+            expect(actions[0]).toInclude({
+                type: "ADD_TODO"
+            })
+            expect(actions[0].todo).toInclude({
+                text: todoText
+            })
+            done()
+        }).catch(done)
+    })
+    it("Should toggle todo and dispatch UPDATE_TODO", (done)=>{
+        let store = createMockStore({})
+        let todoText = "Clean your room"
+        store.dispatch(actions.startToggleTodo(1, true)).then(()=> {
+            let actions = store.getActions()
+            expect(actions[0].id).toBe(1)
+            expect(actions[0].updates.completed).toBe(true)
+            done()
+        }).catch(done)
     })
 })

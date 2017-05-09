@@ -1,4 +1,6 @@
-let redux = require("redux")
+import * as redux from "redux"
+import thunk from "redux-thunk"
+
 let {searchTextReducer, showCompletedReducer, todosReducer} = require("reducers")
 
 let todoApi = require("todoApi")
@@ -10,13 +12,9 @@ export let configure = (initialState)=>{
         todos: todosReducer
     })
     let store = redux.createStore(reducer, initialState, redux.compose(
-
+        redux.applyMiddleware(thunk),
         window.devToolsExtension ? window.devToolsExtension() : f => f
     ))
-    store.subscribe(()=>{
-        let currentState = store.getState()
-        todoApi.setTodos(currentState.todos)
 
-    })
     return store
 }

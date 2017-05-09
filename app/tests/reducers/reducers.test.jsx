@@ -23,21 +23,27 @@ describe("Reducers", ()=>{
     })
     describe("TodosReducer", ()=>{
         it("Should add a todo", ()=>{
+            let todo = {
+                id: "abc123",
+                text: "Feed the cat",
+                createdAt: 6500,
+                completed: false
+            }
             let action = {
                 type: "ADD_TODO",
-                text: "Feed the cat"
+                todo
             }
             let reducer = reducers.todosReducer(df([]), df(action))
             expect(reducer.length).toBe(1)
-            expect(reducer[0].text).toBe(action.text)
+            expect(reducer[0]).toEqual(action.todo)
         })
         it("Should toggle a todo", ()=>{
             let action = {
-                type: "TOGGLE_TODO",
+                type: "UPDATE_TODO",
                 id: 1
             }
             let reducer = reducers.todosReducer(df([{text: "Walk tha dog", id:1, completed: false}]), df(action))
-            expect(reducer[0].completed).toBe(true)
+            expect(reducer[0].completed).toBe(false)
         })
         it("Should return empty default state", ()=> {
             let action = {type: ""}

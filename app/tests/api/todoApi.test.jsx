@@ -8,50 +8,7 @@ describe("Todo Api", ()=>{
     it("Should exists", ()=>{
         expect(todoApi).toExist()
     })
-    describe("setTodos", ()=>{
-        it("Should save the todo if it's valid", ()=>{
-            let todos = [
-                {
-                    id: 1,
-                    text: "Call ur Friends",
-                    completed: false
-                }
-            ]
-            todoApi.setTodos(todos)
-            let actualtodos = todoApi.getTodos()
 
-            expect(actualtodos).toEqual(todos)
-        })
-        it("Should return an empty if the todo is invalid", ()=>{
-            let todos = "Ahmed"
-            todoApi.setTodos(todos)
-            let actualtodos = localStorage.getItem("todos")
-
-            expect(actualtodos).toBe(null)
-        })
-    })
-    describe("getTodos", ()=>{
-        it("Should get the todos", ()=>{
-            let todos = [
-                {
-                    id: 1,
-                    text: "Call ur Friends",
-                    completed: false
-                }
-            ]
-            todoApi.setTodos(todos)
-            let actualtodos = todoApi.getTodos()
-
-            expect(actualtodos).toEqual(todos)
-        })
-        it("Should return empty array if the todo is invalid", ()=>{
-            let todos = "Ahmed"
-            todoApi.setTodos(todos)
-            let actualtodos = todoApi.getTodos()
-
-            expect(actualtodos).toEqual([])
-        })
-    })
     describe("filterTodos", ()=>{
         let todos = [
             {

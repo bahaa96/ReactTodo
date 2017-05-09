@@ -4,7 +4,7 @@ let ReactDOM = require("react-dom")
 let TestUtils = require("react-addons-test-utils")
 
 import connectedTodoList, {TodoList} from "TodoList"
-import Provider from "react-redux/src/components/Provider";
+import {Provider} from "react-redux";
 import connectedTodo, {Todo} from  "Todo"
 import {configure} from "configureStore"
 
@@ -35,9 +35,11 @@ describe("TodoList", ()=>{
         let provider = TestUtils.renderIntoDocument(
             <Provider store={store}>
                 <connectedTodoList/>
-            </Provider>)
-        let todoList = TestUtils.scryRenderedComponentsWithType(provider, connectedTodoList)[0]
-        let todoComponents = TestUtils.scryRenderedComponentsWithType(todoList, connectedTodo)
+            </Provider>
+        )
+        let todoList = TestUtils.scryRenderedComponentsWithType(provider, connectedTodoList)
+        expect(todoList.length).toBe(1)
+        let todoComponents = TestUtils.scryRenderedComponentsWithType(todoList[0], connectedTodo)
         expect(todoComponents.length).toBe(todos.length)
     })
     it("Should return empty message while there're no todos", ()=>{

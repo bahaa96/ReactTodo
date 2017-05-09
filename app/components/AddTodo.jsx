@@ -1,4 +1,4 @@
-let React = require("react")
+import React from "react"
 let {connect} = require("react-redux")
 let actions = require("actions")
 
@@ -7,10 +7,7 @@ export let AddTodo = React.createClass({
       e.preventDefault()
         let text = this.refs.text.value
         if (text){
-            this.props.dispatch({
-                type: "ADD_TODO",
-                text
-            })
+            this.props.dispatch(actions.startAddTodo(text))
             this.refs.text.value = ""
         }else {
             this.refs.text.focus()
