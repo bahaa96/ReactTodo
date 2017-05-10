@@ -2,12 +2,12 @@ import firebase from "firebase"
 
 // Initialize Firebase
 let config = {
-    apiKey: "AIzaSyBSeUgIpyWllJ5y0VZT5TtTebRx1o0DAss",
-    authDomain: "react-todo-c8abb.firebaseapp.com",
-    databaseURL: "https://react-todo-c8abb.firebaseio.com",
-    projectId: "react-todo-c8abb",
-    storageBucket: "react-todo-c8abb.appspot.com",
-    messagingSenderId: "595476146663"
+    apiKey: process.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID
 };
 firebase.initializeApp(config);
 
