@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test karma start",
-    "start": "npm run build && node server.js",
-    "build": "webpack"
+    "start": "node server.js",
+    "postinstall": "webpack -p"
   },
   "author": "Bahaa",
   "license": "MIT ",
