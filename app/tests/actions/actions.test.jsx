@@ -1,8 +1,9 @@
 import configureMockStore from "redux-mock-store"
 import thunk from "redux-thunk"
-let expect = require("expect")
+import expect from "expect"
 
-let actions = require("actions")
+import * as actions from "actions"
+
 
 let createMockStore = configureMockStore([thunk])
 
@@ -69,5 +70,14 @@ describe("Actions", ()=>{
             expect(actions[0].updates.completed).toBe(true)
             done()
         }).catch(done)
+    })
+    it("Should login & return the current user id", ()=>{
+        let uid = 120
+        let actual = actions.login(uid)
+        expect(actual.uid).toBe(uid)
+    })  
+    it("Should logout", ()=>{
+        let actual = actions.logout()
+        expect(actual).toInclude({ type: "LOGOUT" })
     })
 })

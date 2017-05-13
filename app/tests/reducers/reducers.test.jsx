@@ -1,5 +1,5 @@
-let expect = require("expect")
-let reducers = require("reducers")
+import expect from "expect"
+import * as reducers from "reducers"
 let df = require("deep-freeze-strict")
 
 describe("Reducers", ()=>{
@@ -65,6 +65,22 @@ describe("Reducers", ()=>{
             }
             let reducer = reducers.showCompletedReducer(df(false), df(action))
             expect(reducer).toBe(false)
+        })
+    })
+    describe("authReducer", ()=>{
+        it("Should return the uid if the user logged in", ()=>{
+            let action = {
+                type: "LOGIN",
+                uid: 120
+            }
+            let reducer = reducers.authReducer(df({}), df(action))
+            expect(reducer.uid).toBe(action.uid)
+        })
+        it("Should remove the uid if logged out", ()=>{
+            let reducer = reducers.authReducer(df({}), df({
+                type: "LOGOUT"
+            }))
+            expect(reducer).toEqual({})
         })
     })
 })

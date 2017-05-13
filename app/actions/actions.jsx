@@ -1,5 +1,5 @@
 import moment from "moment"
-import firebase, {firebaseRef} from "app/firebase/index"
+import firebase, {firebaseRef, githubProvider} from "app/firebase/"
 
 export let setSearchText = (searchText)=>{
     return {
@@ -28,7 +28,8 @@ export let startAddTodo = (text)=>{
             createdAt: moment().unix() ,
             completedAt: null
         }
-        return firebaseRef.child("todos").push(todo).then(snapshot =>{
+        let uid = getState().auth.uid
+        return firebaseRef.child(`users/${uid}/todos`).push(todo).then(snapshot =>{
             dispatch(addTodo({
                 ...todo,
                 id: snapshot.key
@@ -54,11 +55,12 @@ export let updateTodo = (id, updates)=>{
 
 export let startToggleTodo = (id , completed)=>{
     return (dispatch, getState) =>{
+        let uid = getState().auth.uid
         let updates = {
             completed,
             completedAt: completed === true ? moment().unix(): null
         }
-        return firebaseRef.child(`todos/${id}`).update(updates).then(()=>{
+        return firebaseRef.child(`users/${uid}/todos/${id}`).update(updates).then(()=>{
             dispatch(updateTodo(id, updates))
         })
     }
@@ -66,7 +68,8 @@ export let startToggleTodo = (id , completed)=>{
 
 export let startAddTodos = ()=>{
     return (dispatch, getState) =>{
-        firebaseRef.child("todos").once("value").then(snapshot =>{
+        let uid = getState().auth.uid
+        firebaseRef.child(`users/${uid}/todos`).once("value").then(snapshot =>{
             let todos = snapshot.val() || {}
             todos = Object.keys(todos).map(key =>{
                 return {
@@ -78,3 +81,32 @@ export let startAddTodos = ()=>{
         }).catch(e=>console.log)
     }
 }
+
+export let startLogin = ()=>{
+    return (dispatch, getState) =>{
+        return firebase.auth().signInWithPopup(githubProvider).then((res)=>{
+            console.log(res)
+        }).catch(e=>console.log)
+    }
+}
+export let startLogout = ()=>{
+    return (dispatch, getState) =>{
+        return firebase.auth().signOut().then(()=>{
+            console.log("Logged out ")
+        })
+    }
+}
+
+export let login = (uid)=>{
+    return {
+        type: "LOGIN",
+        uid
+    }
+}
+
+export let logout = ()=>{
+    return {
+        type: "LOGOUT"
+    }
+}
+

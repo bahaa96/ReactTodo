@@ -2,10 +2,12 @@ let React = require("react")
 let expect = require("expect")
 let TestUtils = require("react-addons-test-utils")
 
-let Main = require("Main")
+import Main from "Main"
 import TodoList from "TodoList"
 import Provider from "react-redux/src/components/Provider";
 let configureStore = require("configureStore")
+import {authReducer} from "reducers"
+
 
 describe("Main", ()=> {
     it("Should exists", () => {

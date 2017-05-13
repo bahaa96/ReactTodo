@@ -7,6 +7,8 @@ import connectedTodoList, {TodoList} from "TodoList"
 import {Provider} from "react-redux";
 import connectedTodo, {Todo} from  "Todo"
 import {configure} from "configureStore"
+import {authReducer} from "reducers"
+
 
 describe("TodoList", ()=>{
     it("Should exists", ()=>{

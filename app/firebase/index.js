@@ -2,7 +2,7 @@ import firebase from "firebase"
 
 // Initialize Firebase
 let config = {
-    apiKey: process.API_KEY,
+    apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
     databaseURL: process.env.DATABASE_URL,
     projectId: process.env.PROJECT_ID,
@@ -11,5 +11,6 @@ let config = {
 };
 firebase.initializeApp(config);
 
+export let githubProvider = new firebase.auth.GithubAuthProvider()
 export let firebaseRef = firebase.database().ref()
 export default firebase

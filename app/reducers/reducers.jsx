@@ -33,6 +33,8 @@ export let todosReducer = (state = [], action) =>{
                 ...state,
                 ...action.todos
             ]
+        case "LOGOUT":
+            return []
         default:
             return state
     }
@@ -42,6 +44,19 @@ export let showCompletedReducer = (state = false, action) =>{
     switch (action.type){
         case "TOGGLE_SHOW_COMPLETED":
             return !state
+        default:
+            return state
+    }
+}
+
+export let authReducer = (state = {}, action) =>{
+    switch (action.type){
+        case "LOGIN":
+            return {
+                uid: action.uid
+            }
+        case "LOGOUT":
+            return {}
         default:
             return state
     }
