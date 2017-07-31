@@ -7,6 +7,23 @@
 // Components
 @import "components/todo-list";
 
+body {
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.main-div {
+}
+
+.search-area, .add-todo {
+    background: #004e66;
+    padding: 2em;
+    margin: 0 -15px;
+    color: #ffffff;
+}
+
 button{
     margin: 10px 0;
     border-radius: 0 !important;
@@ -15,15 +32,43 @@ button{
 }
 
 input[type='text'], input[type='search']{
-    border-width: 2px;
     border-radius: 0;
+    border: 2px solid #EFDC05;
 }
 
-.heading {
-    margin: 30px 0;
+.header {
+    position: relative;
+    .heading {
+        background: #004e66;
+        margin: 0 -15px;
+        padding: 10px;
+        position: relative;
+        color: #ffffff;
+    }
+    .logout {
+        background: #004e66;
+        border-radius: 50% !important;
+        display: inline-block;
+        height: 75px;
+        width: 75px;
+        text-align: center;
+        line-height: 105px;
+        margin-top: -45px;
+        z-index: 15;
+        margin-bottom: 1em;
+        color: #ffffff;
+        border: 0;
+        transition: 0.25s;
+
+        &:hover {
+            font-size: 13pt;
+        }
+    }
+
 }
 
 label{
     cursor: pointer;
     margin: 10px 0;
 }
+

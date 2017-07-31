@@ -97,10 +97,10 @@ export let startLogout = ()=>{
     }
 }
 
-export let login = (uid)=>{
+export let login = (user)=>{
     return {
         type: "LOGIN",
-        uid
+        user
     }
 }
 

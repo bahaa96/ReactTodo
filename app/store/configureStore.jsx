@@ -3,7 +3,6 @@ import thunk from "redux-thunk"
 
 let {searchTextReducer, showCompletedReducer, todosReducer, authReducer} = require("reducers")
 
-let todoApi = require("todoApi")
 
 export let configure = (initialState)=>{
     let reducer = redux.combineReducers({

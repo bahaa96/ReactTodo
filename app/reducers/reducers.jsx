@@ -52,9 +52,7 @@ export let showCompletedReducer = (state = false, action) =>{
 export let authReducer = (state = {}, action) =>{
     switch (action.type){
         case "LOGIN":
-            return {
-                uid: action.uid
-            }
+            return action.user
         case "LOGOUT":
             return {}
         default:

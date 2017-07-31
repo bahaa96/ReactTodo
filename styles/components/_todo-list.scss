@@ -1,16 +1,19 @@
 ul{
     padding: 0;
     background: rgba(217, 217, 217, 0.3);
+    margin: 1em 0;
 }
 li{
     height: 75px;
     box-sizing: border-box;
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #EFDC05;
     display: flex;
-
+    background: #004E66;
+    color: #ffffff;
+    cursor: pointer;
 }
 li:hover{
-    background: rgba(195, 195, 195, 0.3);
+    color: #EFDC05;
 }
 
 li label{
@@ -20,7 +23,6 @@ li label{
 }
 li p{
     margin: auto;
-    color: #00bcd4;
 }
 li div {
     margin:auto;

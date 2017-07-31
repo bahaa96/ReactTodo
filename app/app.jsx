@@ -10,7 +10,7 @@ import firebase from "firebase"
 
 firebase.auth().onAuthStateChanged((user)=>{
     if (user){
-        store.dispatch(actions.login(user.uid))
+        store.dispatch(actions.login(user))
         store.dispatch(actions.startAddTodos())
         hashHistory.push("/todos")
     }else {

@@ -15,7 +15,7 @@ export let AddTodo = React.createClass({
     },
     render(){
         return (
-            <form onSubmit={this.formSubmitted}>
+            <form onSubmit={this.formSubmitted} className="add-todo">
                 <input type="text" className="form-control" ref={"text"} placeholder="What do need to do ?"/>
                 <button className="btn btn-primary btn-block">Add Todo</button>
             </form>

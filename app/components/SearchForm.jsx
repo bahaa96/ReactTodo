@@ -7,7 +7,7 @@ export let SearchForm = React.createClass({
     render(){
         let {searchText, showCompleted, dispatch} = this.props
         return (
-            <div>
+            <div className="search-area">
                 <input type="search" className="form-control" ref={"searchText"} value={searchText} placeholder="Search todos" onChange={()=>{
                     dispatch(actions.setSearchText(this.refs.searchText.value))
                 }}/>
